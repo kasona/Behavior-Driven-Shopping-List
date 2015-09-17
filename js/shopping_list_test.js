@@ -31,5 +31,36 @@ describe('ShoppingListItem', function() {
     var result = Bagel.render();
     Bagel.render().should.equal('<li class="completed_true"><span>Bagel</span><span>Blueberry</span></li>');
   });
-
 }); // end of ShoppingListItem
+
+// ======================== ShoppingList ==========================
+
+describe('ShoppingList', function() {
+
+  var Grape = new ShoppingList();
+
+  it('should be a class', function() {
+    ShoppingList.should.be.a('function');
+  });
+  it('should have a property named item', function() {
+    Grape.should.have.property('item');
+  });
+  it('should be an empty array', function() {
+    var Banana = new ShoppingList();
+    Banana.item.should.be.empty;
+  });
+  it('should add item to ShoppingList', function() {
+    Grape.addItem().to.throw(Error);
+  });
+  it.skip('should remove item from ShoppingList', function() {
+    Grape.removeItem().to.throw(Error);
+  });
+
+
+
+
+//Testing removal of last item inputed into an array
+
+
+
+});
