@@ -9,6 +9,7 @@ describe('ShoppingListItem', function() {
 
   it('should be a class', function() {
     ShoppingListItem.should.be.a('function');
+    ShoppingListItem.should.be.an('object');
   });
   it('should have a property, name', function() {
     Bagel.name.should.equal('Bagel');
