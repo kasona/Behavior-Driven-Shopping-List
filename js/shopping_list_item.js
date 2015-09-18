@@ -16,7 +16,11 @@ ShoppingListItem.prototype.uncheck = function(is_done) {
 };
 
 ShoppingListItem.prototype.render = function(render) {
-  return '<li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li>';
+  render = '<li class="completed_' + this.is_done + '"><input type="checkbox" onChange="changedCheckedStatus()" id="checkbox" value="checkbox"><span>' + this.name + '</span><span>' + this.description + '</span></li>';
+
+  document.getElementById('check').value = true | false;
+
+  return render;
 };
 
 // ================= ShoppingList =========================
@@ -43,6 +47,17 @@ ShoppingList.prototype.removeItem = function (ShoppingListItem) {
 };
 
 ShoppingList.prototype.render = function(render) {
-  return '<ul><li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li></ul>';
-};
+  render = '<ul><li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li></ul>';
 
+  var listAll = [];
+
+  for (var i = 0; i < this.items.length; i++) {
+    listAll.push(this.items[i].render());
+  }
+
+  listAll.toString();
+  listAll.join(' ');
+
+  return render;
+
+};

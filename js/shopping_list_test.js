@@ -1,7 +1,6 @@
 var expect = chai.expect;
 var should = chai.should();
 
-
 // ======================== ShoppingListItem ==========================
 describe('ShoppingListItem', function() {
 
@@ -26,22 +25,31 @@ describe('ShoppingListItem', function() {
   });
 
   //methods
-  describe('Methods', function() {
+  describe('check', function() {
     it('should have method named check', function() {
+    bagel.check.should.be.a('function');
+  });
+    it('should be set to true', function() {
     bagel.is_done.should.equal.true;
   });
-
+  });
+  describe('uncheck', function() {
     it('should have method named uncheck', function() {
+    bagel.uncheck.should.be.a('function');
+  });
+    it('should be set to false', function() {
     bagel.is_done.should.equal.false;
   });
   });
 
-  // render
+  //render
   describe('Render', function() {
-    it('should have method named render method and return an html string', function() {
-      bagel.render().should.equal('<li class="completed_true"><span>Bagel</span><span>Blueberry</span></li>');
+    it('should be a method', function() {
+      bagel.render.should.be.a('function');
     });
-
+    it('should return a html string', function() {
+      bagel.render().should.be.a('string');
+    });
   });
 }); // end of ShoppingListItem
 
@@ -96,9 +104,20 @@ describe('ShoppingList', function() {
     list.removeItem.should.throw(Error);
   });
 });
+
+  //render
   describe('render', function () {
-  it('should have method named render method and return an html string', function() {
-    list.render().should.equal('<ul><li class="completed_undefined"><span>undefined</span><span>undefined</span></li></ul>');
+  it('should be a method', function() {
+    list.render.should.be.a('function');
+  });
+  it('should return a html string ', function () {
+    var list = new ShoppingList();
+    var psl = new ShoppingListItem('Pumpkin Spice Latte', 'uggs', 'Nolan');
+
+    var fullList = list.render();
+    var list1 = list.addItem(psl);
+
+    list.render().should.equal('<ul>' +  list1.items  + '</ul>');
   });
 });
 }); //end of ShoppingList
