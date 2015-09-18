@@ -77,6 +77,8 @@ describe('ShoppingList', function() {
       list.addItem.should.throw(Error);
     });
   });
+
+  //removeItem
   describe('removeItem', function() {
   it('should have method named removeItem', function() {
     ShoppingList.should.have.length(1);
@@ -92,7 +94,7 @@ describe('ShoppingList', function() {
 });
   describe('render', function () {
   it('should have method named render method and return an html string', function() {
-    ShoppingList.render().should.equal('<ul><li class="completed_true"><span>Bagel</span><span>Blueberry</span></li></ul>');
+    list.render().should.equal('<li class="completed_undefined"><span>undefined</span><span>undefined</span></li>');
   });
 });
 }); //end of ShoppingList

@@ -37,8 +37,6 @@ ShoppingList.prototype.addItem = function(item) {
 ShoppingList.prototype.removeItem = function (ShoppingListItem) {
   if (this.item.indexOf(ShoppingListItem) !== -1) {
     this.item.pop(ShoppingListItem);
-  } else if (ShoppingListItem === null) {
-    this.item.pop();
   } else if (this.item.indexOf(ShoppingListItem) === -1) {
     throw new Error('item is not on list');
   }
