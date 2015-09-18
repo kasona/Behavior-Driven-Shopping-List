@@ -25,6 +25,7 @@ describe('ShoppingListItem', function() {
     bagel.is_done.should.equal.true;
   });
 
+  //methods
   describe('Methods', function() {
     it('should have method named check', function() {
     bagel.is_done.should.equal.true;
@@ -35,10 +36,12 @@ describe('ShoppingListItem', function() {
   });
   });
 
+  // render
   describe('Render', function() {
     it('should have method named render method and return an html string', function() {
       bagel.render().should.equal('<li class="completed_true"><span>Bagel</span><span>Blueberry</span></li>');
     });
+
   });
 }); // end of ShoppingListItem
 
@@ -62,8 +65,9 @@ describe('ShoppingList', function() {
     var banana = new ShoppingList();
     banana.item.should.be.empty;
   });
-  describe('addItem', function() {
 
+  //addItem
+  describe('addItem', function() {
     it('should have method named addItem', function() {
     ShoppingList.should.have.length(1);
   });
@@ -94,7 +98,7 @@ describe('ShoppingList', function() {
 });
   describe('render', function () {
   it('should have method named render method and return an html string', function() {
-    list.render().should.equal('<li class="completed_undefined"><span>undefined</span><span>undefined</span></li>');
+    list.render().should.equal('<ul><li class="completed_undefined"><span>undefined</span><span>undefined</span></li></ul>');
   });
 });
 }); //end of ShoppingList

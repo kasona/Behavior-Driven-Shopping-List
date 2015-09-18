@@ -43,6 +43,6 @@ ShoppingList.prototype.removeItem = function (ShoppingListItem) {
 };
 
 ShoppingList.prototype.render = function(render) {
-  return '<li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li>';
+  return '<ul><li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li></ul>';
 };
 
