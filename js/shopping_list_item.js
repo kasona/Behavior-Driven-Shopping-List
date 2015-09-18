@@ -24,28 +24,27 @@ ShoppingListItem.prototype.render = function(render) {
 function ShoppingList(item) {
   this.item = [];
 }
-console.log('testing');
+
 ShoppingList.prototype.addItem = function(item) {
-  if (item instanceof ShoppingList) {
-    console.log('hi testing');
+  if (item instanceof ShoppingListItem) {
     this.item.push(item);
+    return true;
   } else {
-    throw new Error('item does not exist.');
+    throw new Error('item is not on ShoppingList');
   }
 };
 
-/*
-1. remove objects from item array
-2. if no parameters, remove last item in list, if no items, do nothing
-3. if !ShoppingList, throw error
-*/
-ShoppingList.prototype.removeItem = function(item) {
-  if (item instanceof !ShoppingList) {
-    this.item.remove(item);
-  } else if (lkdfj) {
-    //Check length, remove, check length again and value of last item
-
-  } else {
-    throw new Error('item does not exist.');
+ShoppingList.prototype.removeItem = function (ShoppingListItem) {
+  if (this.item.indexOf(ShoppingListItem) !== -1) {
+    this.item.pop(ShoppingListItem);
+  } else if (ShoppingListItem === null) {
+    this.item.pop();
+  } else if (this.item.indexOf(ShoppingListItem) === -1) {
+    throw new Error('item is not on list');
   }
 };
+
+ShoppingList.prototype.render = function(render) {
+  return '<li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li>';
+};
+

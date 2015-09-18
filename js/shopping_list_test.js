@@ -5,31 +5,40 @@ var should = chai.should();
 // ======================== ShoppingListItem ==========================
 describe('ShoppingListItem', function() {
 
-  var Bagel = new ShoppingListItem('Bagel', 'Blueberry', true);
+  var bagel = new ShoppingListItem('Bagel', 'Blueberry', true);
 
   it('should be a class', function() {
     ShoppingListItem.should.be.a('function');
   });
+
   it('should have a property, name', function() {
-    Bagel.name.should.equal('Bagel');
-    Bagel.should.have.property('name');
+    bagel.name.should.equal('Bagel');
+    bagel.should.have.property('name');
   });
+
   it('should have property, description', function() {
-    Bagel.should.have.property('description');
-    Bagel.description.should.equal('Blueberry');
+    bagel.should.have.property('description');
+    bagel.description.should.equal('Blueberry');
   });
+
   it('should have property, is_done', function() {
-    Bagel.is_done.should.equal.true;
+    bagel.is_done.should.equal.true;
   });
-  it('should have method named check', function() {
-    Bagel.is_done.should.equal.true;
+
+  describe('Methods', function() {
+    it('should have method named check', function() {
+    bagel.is_done.should.equal.true;
   });
-  it('should have method named uncheck', function() {
-    Bagel.is_done.should.equal.false;
+
+    it('should have method named uncheck', function() {
+    bagel.is_done.should.equal.false;
   });
-  it('should have method named render method and return an html string', function() {
-    var result = Bagel.render();
-    Bagel.render().should.equal('<li class="completed_true"><span>Bagel</span><span>Blueberry</span></li>');
+  });
+
+  describe('Render', function() {
+    it('should have method named render method and return an html string', function() {
+      bagel.render().should.equal('<li class="completed_true"><span>Bagel</span><span>Blueberry</span></li>');
+    });
   });
 }); // end of ShoppingListItem
 
@@ -37,30 +46,53 @@ describe('ShoppingListItem', function() {
 
 describe('ShoppingList', function() {
 
-  var Grape = new ShoppingList();
+  var grape = new ShoppingList();
+  var list = new ShoppingList();
+  var item = new ShoppingListItem('item');
 
   it('should be a class', function() {
     ShoppingList.should.be.a('function');
   });
+
   it('should have a property named item', function() {
-    Grape.should.have.property('item');
+    grape.should.have.property('item');
   });
+
   it('should be an empty array', function() {
-    var Banana = new ShoppingList();
-    Banana.item.should.be.empty;
+    var banana = new ShoppingList();
+    banana.item.should.be.empty;
   });
-  it('should add item to ShoppingList', function() {
-    Grape.addItem().to.throw(Error);
+  describe('addItem', function() {
+
+    it('should have method named addItem', function() {
+    ShoppingList.should.have.length(1);
   });
-  it.skip('should remove item from ShoppingList', function() {
-    Grape.removeItem().to.throw(Error);
+
+    it('should add ShoppingListItems into item Array', function() {
+      list.addItem(item).should.be.equal.true;
+      list.item.should.have.length(1);
+    });
+
+    it('addItem should throw error message', function() {
+      list.addItem.should.throw(Error);
+    });
+  });
+  describe('removeItem', function() {
+  it('should have method named removeItem', function() {
+    ShoppingList.should.have.length(1);
   });
 
+  it('should remove item from array', function() {
+    ShoppingList.should.have.length(1);
+  });
 
-
-
-//Testing removal of last item inputed into an array
-
-
-
+  it('removeItem should throw error message', function() {
+    list.removeItem.should.throw(Error);
+  });
 });
+  describe('render', function () {
+  it('should have method named render method and return an html string', function() {
+    ShoppingList.render().should.equal('<ul><li class="completed_true"><span>Bagel</span><span>Blueberry</span></li></ul>');
+  });
+});
+}); //end of ShoppingList
