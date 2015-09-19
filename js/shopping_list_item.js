@@ -15,10 +15,17 @@ ShoppingListItem.prototype.uncheck = function(is_done) {
   this.is_done = false;
 };
 
-ShoppingListItem.prototype.render = function(render) {
-  render = '<li class="completed_' + this.is_done + '"><input type="checkbox" onChange="changedCheckedStatus()" id="checkbox" value="checkbox"><span>' + this.name + '</span><span>' + this.description + '</span></li>';
+ShoppingListItem.prototype.render = function() {
+  var render =
+  '<li class="completed_' +  this.isDone + '">\
+  <input type= "checkbox" onChange="changedCheckedStatus()" id="checkbox" value="checkbox">\
+  <span>' + this.name + '</span>\
+  <span>' + this.description + '</span>\
+  <button onclick="removeItemButtonClicked()">  x</button>\
+  </li>';
 
-  document.getElementById('check').value = true | false;
+  // <input type="checkbox" onChange="changedCheckedStatus()" id="checkbox" value="checkbox">\
+  // document.getElementById('check').value = true || false;
 
   return render;
 };
@@ -48,11 +55,9 @@ ShoppingList.prototype.removeItem = function (ShoppingListItem) {
 
 ShoppingList.prototype.render = function(render) {
   render = '<ul><li class="completed_' + this.is_done + '"><span>' + this.name + '</span><span>' + this.description + '</span></li></ul>';
-
   var listAll = [];
-
-  for (var i = 0; i < this.items.length; i++) {
-    listAll.push(this.items[i].render());
+  for (var i = 0; i < this.item.length; i++) {
+    listAll.push(this.item[i].render());
   }
 
   listAll.toString();

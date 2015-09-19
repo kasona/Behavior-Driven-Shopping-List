@@ -33,6 +33,7 @@ describe('ShoppingListItem', function() {
     bagel.is_done.should.equal.true;
   });
   });
+
   describe('uncheck', function() {
     it('should have method named uncheck', function() {
     bagel.uncheck.should.be.a('function');
@@ -77,12 +78,18 @@ describe('ShoppingList', function() {
   //addItem
   describe('addItem', function() {
     it('should have method named addItem', function() {
-    ShoppingList.should.have.length(1);
+    list.removeItem.should.be.a('function');
   });
 
     it('should add ShoppingListItems into item Array', function() {
       list.addItem(item).should.be.equal.true;
       list.item.should.have.length(1);
+
+      var bag = new ShoppingList();
+      var sammich = new ShoppingListItem('bread', 'mayo');
+      bag.addItem(sammich);
+      bag.item.should.contain(sammich);
+
     });
 
     it('addItem should throw error message', function() {
@@ -93,11 +100,15 @@ describe('ShoppingList', function() {
   //removeItem
   describe('removeItem', function() {
   it('should have method named removeItem', function() {
-    ShoppingList.should.have.length(1);
+    list.removeItem.should.be.a('function');
   });
 
   it('should remove item from array', function() {
-    ShoppingList.should.have.length(1);
+    var bag = new ShoppingList();
+    var food = new ShoppingListItem('milk', 'bread');
+    bag.addItem(food);
+    bag.removeItem(food);
+    bag.item.should.not.contain(food);
   });
 
   it('removeItem should throw error message', function() {
@@ -107,17 +118,17 @@ describe('ShoppingList', function() {
 
   //render
   describe('render', function () {
-  it('should be a method', function() {
+    it('should be a method', function() {
     list.render.should.be.a('function');
   });
-  it('should return a html string ', function () {
-    var list = new ShoppingList();
-    var psl = new ShoppingListItem('Pumpkin Spice Latte', 'uggs', 'Nolan');
+    it('should return a html string ', function () {
+      // var psl = new ShoppingListItem('Pumpkin Spice Latte', 'uggs', 'Nolan');
 
-    var fullList = list.render();
-    var list1 = list.addItem(psl);
+      // var fullList = list.render();
+      // var list1 = list.addItem(psl);
 
-    list.render().should.equal('<ul>' +  list1.items  + '</ul>');
+      // list.render().should.equal('<ul>' +  list1.items  + '</ul>');
+      list.render().should.be.a('string');
+    });
   });
-});
 }); //end of ShoppingList
