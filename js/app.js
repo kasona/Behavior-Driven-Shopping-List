@@ -1,33 +1,44 @@
-// var Shoppinglist = require('./Shoppinglist');
+var newList = new ShoppingList(); //new instance
+var showItems = newList.render(); // invoke render
+document.querySelector('#adding').addEventListener('click', add_to_shopping_list);
 
-var bananaPeel = new Shoppinglist(); //new instance
-var render = bananaPeel.render(); // invoke render
-document.getElementById('content').innerHTML = bananaPeel.render();
+var adding = document.querySelector('#adding');
+adding.addEventListener('click', function() {
+  add_to_shopping_list();
+});
 
-function add_to_shopping_list() {
-  var title = document.getElementById(title).value; //to link with html
-  var description = document.getElementById(description).value; //to link with html
+// ===================== add_to_shopping_list =========================
+
+function add_to_shopping_list () {
+
+  var title = document.querySelector('#title').value;
+  var description = document.querySelector('#description').value;
+
   var new_shopping_list_item = new ShoppingListItem(title, description);
 
-  bananaPeel.addItem(new_shopping_list_item);
+  newList.addItem(new_shopping_list_item);
 
-  document.getElementById('content').innerHTML = bananaPeel.render();
-
-  // bananaPeel.addItem(new_shopping_list_item); //invoke addItem
+  // console.log(showItems);
+  document.getElementById('content').innerHTML = newList.render();
 }
 
-// function check(idx, checkbox) { // idx is position of ShoppingListItem, checkbox is actual checkbox element, !!!! how to use EventListener and checked together
-//   document.getElementById('checkbox').checked = true || false;
-//   document.getElementById('checkbox').addEventListener('click');
+//========================== changCheckedStatus =====================
+function changeCheckedStatus(idx, checkbox) { // idx is position of ShoppingListItem, checkbox is actual checkbox element, !!!! how to use EventListener and checked together
+  var currentItem = newList.item[idx];
+  var checked = document.getElementById(idx); console.log(checked);
 
-//   if (checkbox.checked === false) {
-//     currentItem.check();
-//   } else {
-//     currentItem.uncheck();
-//   }
-//   bananaPeel.render();
-// }
+  if (checkbox.checked === true) {
+    currentItem.check();
+  } else {
+    currentItem.uncheck();
+  }
+  document.getElementById('content').innerHTML = newList.render();
+}
 
-// function uncheck() {
-//   document.getElementById('myCheck').checked = false;
-// }
+// =========================== uncheck ==============================
+function removeItemButtonClicked(idx) {
+  var toRemove = document.getElementById('remove' + idx);
+  var removing = newList.item[idx];
+  document.getElementById('content').innerHTML = newList.render();
+  newList.removeItem(removing);
+}
